@@ -29,26 +29,26 @@
 		<tbody>
 			@foreach (var item in Model)
 			{
-				<tr>
-					<td>
-						@item.Name
-					</td>
-					<td>
-						@item.CategoryName
-					</td>
-					<td>
-						@((item.Price).ToString("c"))
-					</td>
-					<td>
-						<a asp-action="ProductEdit" class="btn btn-success" asp-route-productId="@item.ProductId">
-							<i class="fas fa-edit"></i>
-						</a>
-						<a asp-action="ProductDelete" class="btn btn-danger" asp-route-productId="@item.ProductId">
-							<i class="fas fa-trash"></i>
-						</a>
-					</td>
-				</tr>
+			   <tr>
+				<td>
+								@item.Name
+				</td>
+				<td>
+								@item.CategoryName
+				</td>
+				<td>
+								@((item.Price).ToString("c"))
+				</td>
+				<td>
+				 <a asp-action="ProductEdit" class="btn btn-success" asp-route-productId="@item.ProductId">
+				  <i class="fas fa-edit"></i>
+				 </a>
+				 <a asp-action="ProductDelete" class="btn btn-danger" asp-route-productId="@item.ProductId">
+				  <i class="fas fa-trash"></i>
+				 </a>
+				</td>
+			   </tr>
 			}
-		</tbody>
-	</table>
+  </tbody>
+ </table>
 </div>
