@@ -1,4 +1,8 @@
 # MangoRestaurant!
+About project :
+
+Technologies used -
+Asp .Net Core 6, Microservices, Azure Service Bus, Azure Blob Storage, MS Sql Server
 
 Some screenshots of the project ->
 [Screenshot 2023-04-24 000908](https://user-images.githubusercontent.com/37308992/233858735-de238193-8250-43d4-aeac-74dd48ab0357.png)
