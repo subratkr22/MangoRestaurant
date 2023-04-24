@@ -98,16 +98,38 @@ namespace Mango.Services.OrderAPI.Messaging
             await _orderRepository.AddOrder(orderHeader);
 
 
-            //PaymentRequestMessage paymentRequestMessage = new()
-            //{
-            //    Name = orderHeader.FirstName + " " + orderHeader.LastName,
-            //    CardNumber = orderHeader.CardNumber,
-            //    CVV = orderHeader.CVV,
-            //    ExpiryMonthYear = orderHeader.ExpiryMonthYear,
-            //    OrderId = orderHeader.OrderHeaderId,
-            //    OrderTotal = orderHeader.OrderTotal,
-            //    Email = orderHeader.Email
-            //};
+            PaymentRequestMessage paymentRequestMessage = new()
+            {
+                Name = orderHeader.FirstName + " " + orderHeader.LastName,
+                CardNumber = orderHeader.CardNumber,
+                CVV = orderHeader.CVV,
+                ExpiryMonthYear = orderHeader.ExpiryMonthYear,
+                OrderId = orderHeader.OrderHeaderId,
+                OrderTotal = orderHeader.OrderTotal,
+                Email = orderHeader.Email
+            };
+
+            try
+            {
+                await _messageBus.PublishMessage(paymentRequestMessage, orderPaymentProcessTopic);
+                await args.CompleteMessageAsync(args.Message);
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        private async Task OnOrderPaymentUpdateReceived(ProcessMessageEventArgs args)
+        {
+            var message = args.Message;
+            var body = Encoding.UTF8.GetString(message.Body);
+
+            UpdatePaymentResultMessage paymentResultMessage = JsonConvert.DeserializeObject<UpdatePaymentResultMessage>(body);
+
+            await _orderRepository.UpdateOrderPaymentStatus(paymentResultMessage.OrderId, paymentResultMessage.Status);
+            await args.CompleteMessageAsync(args.Message);
+
         }
     }
 }
