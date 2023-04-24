@@ -98,16 +98,16 @@ namespace Mango.Services.OrderAPI.Messaging
             await _orderRepository.AddOrder(orderHeader);
 
 
-            PaymentRequestMessage paymentRequestMessage = new()
-            {
-                Name = orderHeader.FirstName + " " + orderHeader.LastName,
-                CardNumber = orderHeader.CardNumber,
-                CVV = orderHeader.CVV,
-                ExpiryMonthYear = orderHeader.ExpiryMonthYear,
-                OrderId = orderHeader.OrderHeaderId,
-                OrderTotal = orderHeader.OrderTotal,
-                Email = orderHeader.Email
-            };
+            //PaymentRequestMessage paymentRequestMessage = new()
+            //{
+            //    Name = orderHeader.FirstName + " " + orderHeader.LastName,
+            //    CardNumber = orderHeader.CardNumber,
+            //    CVV = orderHeader.CVV,
+            //    ExpiryMonthYear = orderHeader.ExpiryMonthYear,
+            //    OrderId = orderHeader.OrderHeaderId,
+            //    OrderTotal = orderHeader.OrderTotal,
+            //    Email = orderHeader.Email
+            //};
         }
     }
 }
