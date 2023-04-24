@@ -1,4 +1,6 @@
 # MangoRestaurant!
+This repo contains the whole project written step by step following the Udemy course.
+
 About project :
 
 Technologies used -
