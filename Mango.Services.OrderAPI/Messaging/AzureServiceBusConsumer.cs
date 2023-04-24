@@ -9,7 +9,7 @@ using Mango.Services.OrderAPI.Models;
 
 namespace Mango.Services.OrderAPI.Messaging
 {
-    public class AzureServiceBusConsumer
+    public class AzureServiceBusConsumer: IAzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
         private readonly string subscriptionCheckOut;

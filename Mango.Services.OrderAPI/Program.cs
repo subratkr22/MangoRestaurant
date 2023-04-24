@@ -1,4 +1,7 @@
+using Mango.MessageBus;
 using Mango.Services.OrderAPI.DbContexts;
+using Mango.Services.OrderAPI.Extension;
+using Mango.Services.OrderAPI.Messaging;
 using Mango.Services.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -6,8 +9,6 @@ using Microsoft.OpenApi.Models;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,6 +22,11 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddSingleton(new OrderRepository(optionBuilder.Options));
+
+builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
+builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+
+builder.Services.AddControllers();
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -44,7 +50,7 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mango.Services.ShoppingCartAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mango.Services.OrderAPI", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"Enter 'Bearer' [space] and your token",
@@ -87,5 +93,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseAzureServiceBusConsumer();
 
 app.Run();
