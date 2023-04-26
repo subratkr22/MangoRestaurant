@@ -5,12 +5,19 @@ Technologies used -
 To self learn Microservice. I created this project where I used technologies as mentioned below,
 
 •	.NET 6 Microservices Architecture
+
 •	Implementing mulitple microservices using .NET 6
+
 •	.NET API with Authentication and Authorization
+
 •	Identity Server integration
+
 •	Role based authorization with Identity Server
+
 •	Async and Sync communcation between Microservices
+
 •	Azure Blob Storage
+
 •	Azure Service Bus - Topics and Queues
 
 Some screenshots of the project ->
