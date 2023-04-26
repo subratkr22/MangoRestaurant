@@ -2,7 +2,16 @@
 About project :
 
 Technologies used -
-Asp .Net Core 6, MVC, Web API, C#, Microservices, Identity Server, Azure Service Bus, Azure Blob Storage, MS Sql Server
+To self learn Microservice. I created this project where I used technologies as mentioned below,
+
+•	.NET 6 Microservices Architecture
+•	Implementing mulitple microservices using .NET 6
+•	.NET API with Authentication and Authorization
+•	Identity Server integration
+•	Role based authorization with Identity Server
+•	Async and Sync communcation between Microservices
+•	Azure Blob Storage
+•	Azure Service Bus - Topics and Queues
 
 Some screenshots of the project ->
 [Screenshot 2023-04-24 000908](https://user-images.githubusercontent.com/37308992/233858735-de238193-8250-43d4-aeac-74dd48ab0357.png)
